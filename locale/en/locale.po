@@ -16,3 +16,33 @@ msgstr "Relations Plugin"
 
 msgid "plugins.generic.relations.description"
 msgstr "This plugin allows adding relationship data to articles."
+
+msgid "plugins.generic.relations.relationsData"
+msgstr "Relations"
+ 
+msgid "plugins.generic.relations.publication.relationsData"
+msgstr "Publication Relations"
+ 
+msgid "plugins.generic.relations.relations"
+msgstr "Relations"
+ 
+msgid "plugins.generic.relations.column.relationType"
+msgstr "Relation type"
+ 
+msgid "plugins.generic.relations.column.identifierType"
+msgstr "Identifier type"
+ 
+msgid "plugins.generic.relations.column.value"
+msgstr "Value"
+ 
+msgid "plugins.generic.relations.button.remove"
+msgstr "Remove"
+ 
+msgid "plugins.generic.relations.button.addRelation"
+msgstr "Add relation"
+ 
+msgid "plugins.generic.relations.button.save"
+msgstr "Save"
+ 
+msgid "plugins.generic.relations.button.saving"
+msgstr "Saving..."

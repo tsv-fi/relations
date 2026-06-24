@@ -16,3 +16,33 @@ msgstr "Relaatiolisäosa"
 
 msgid "plugins.generic.relations.description"
 msgstr "Tämä lisäosa mahdollistaa artikkelien ja muiden tutkimusobjektien välisten suhteiden määrittämisen."
+
+msgid "plugins.generic.relations.relationsData"
+msgstr "Relaatiot"
+ 
+msgid "plugins.generic.relations.publication.relationsData"
+msgstr "Julkaisun relaatiot"
+ 
+msgid "plugins.generic.relations.relations"
+msgstr "Relaatiot"
+ 
+msgid "plugins.generic.relations.column.relationType"
+msgstr "Relaatiotyyppi"
+ 
+msgid "plugins.generic.relations.column.identifierType"
+msgstr "Tunnisteen tyyppi"
+ 
+msgid "plugins.generic.relations.column.value"
+msgstr "Arvo"
+ 
+msgid "plugins.generic.relations.button.remove"
+msgstr "Poista"
+ 
+msgid "plugins.generic.relations.button.addRelation"
+msgstr "Lisää relaatio"
+ 
+msgid "plugins.generic.relations.button.save"
+msgstr "Tallenna"
+ 
+msgid "plugins.generic.relations.button.saving"
+msgstr "Tallennetaan..."
