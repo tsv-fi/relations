@@ -7,6 +7,7 @@ const relationTypes = [
     {value: 'isTranslationOf', label: 'isTranslationOf'},
     {value: 'hasTranslation', label: 'hasTranslation'},
     {value: 'isReviewOf', label: 'isReviewOf'},
+    {value: 'hasReview', label: 'hasReview'},
     {value: 'isCommentOn', label: 'isCommentOn'},
     {value: 'hasComment', label: 'hasComment'},
 ];
@@ -19,9 +20,6 @@ const identifierTypes = [
     {value: 'Handle', label: 'Handle'},
     {value: 'ARXIV', label: 'arXiv'},
     {value: 'PMID', label: 'PMID'},
-    {value: 'PMCID', label: 'PMCID'},
-    {value: 'UUID', label: 'UUID'},
-    {value: 'Other', label: 'Other'},
 ];
 
 pkp.registry.storeExtend("workflow", (piniaContext) => {
@@ -35,18 +33,28 @@ pkp.registry.storeExtend("workflow", (piniaContext) => {
             if (item.key === "publication") {
                 return {
                     ...item,
-                    items: [
-                        ...item.items,
-                        {
-                            key: "publication_relations",
-                            label: t("plugins.generic.relations.relationsData"),
-                            state: {
-                                primaryMenuItem: "publication",
-                                secondaryMenuItem: "relations",
-                                title: t("plugins.generic.relations.publication.relationsData"),
-                            },
-                        },
-                    ],
+                    items: item.items.map((versionItem) => {
+                        if (!versionItem.key?.startsWith("publication_") || !versionItem.items) {
+                            return versionItem;
+                        }
+                        const publicationId = versionItem.key.replace("publication_", "");
+                        return {
+                            ...versionItem,
+                            items: [
+                                ...versionItem.items,
+                                {
+                                    key: `publication_${publicationId}_relations`,
+                                    label: t("plugins.generic.relations.relationsData"),
+                                    state: {
+                                        publicationId: parseInt(publicationId),
+                                        primaryMenuItem: "publication",
+                                        secondaryMenuItem: "relations",
+                                        title: t("plugins.generic.relations.publication.relationsData"),
+                                    },
+                                },
+                            ],
+                        };
+                    }),
                 };
             }
             return item;

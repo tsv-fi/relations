@@ -40,9 +40,15 @@
 					<input
 						:value="relation.value"
 						type="text"
-						class="pkpFormField__input w-full"
+						:class="['pkpFormField__input', 'w-full', errors[index] ? 'pkpFormField__input--invalid' : '']"
 						@input="(e) => updateRelation(index, 'value', e.target.value)"
 					/>
+					<div v-if="errors[index]" class="pkpFieldError" aria-live="polite">
+						<div class="pkpFieldError__message">
+							<PkpIcon icon="Error" class="me-1 h-4 w-4 text-on-dark" :inline="true" />
+							<span>{{ errors[index] }}</span>
+						</div>
+					</div>
 				</PkpTableCell>
 				<PkpTableCell>
 					<PkpButton :is-warnable="true" @click="removeRelation(index)">
@@ -76,16 +82,19 @@ const props = defineProps({
 });
 
 const relations = ref([]);
+const errors = ref({});
 
 watch(
 	() => props.publication,
 	(publication) => {
 		if (publication) {
 			relations.value = publication.relations ?? [];
+			errors.value = {};
 		}
 	},
 	{immediate: true},
 );
+
 
 const {apiUrl} = useUrl(
 	computed(
@@ -93,16 +102,26 @@ const {apiUrl} = useUrl(
 	),
 );
 
-const saveBody = ref({relations: []});
+const payload = ref({relations: []});
 
-const {fetch: putPublication, isLoading: isSaving} = useFetch(apiUrl, {
+const {fetch: putPublication, isLoading: isSaving, validationError} = useFetch(apiUrl, {
 	method: 'PUT',
-	body: saveBody,
+	body: payload,
+	expectValidationError: true,
 });
 
 async function saveRelations() {
-	saveBody.value = {relations: JSON.parse(JSON.stringify(relations.value))};
+	payload.value = {relations: JSON.parse(JSON.stringify(relations.value))};
 	await putPublication();
+	if (validationError.value) {
+		Object.entries(validationError.value).forEach(([key, messages]) => {
+			const match = key.match(/^relations\.(\d+)\./);
+			if (match) {
+				const index = parseInt(match[1]);
+				errors.value = {...errors.value, [index]: messages[0]};
+			}
+		});
+	}
 }
 
 function addRelation() {
@@ -115,9 +134,17 @@ function addRelation() {
 
 function removeRelation(index) {
 	relations.value.splice(index, 1);
+	const newErrors = {...errors.value};
+	delete newErrors[index];
+	errors.value = newErrors;
 }
 
 function updateRelation(index, field, value) {
 	relations.value[index] = {...relations.value[index], [field]: value};
+	if (field === 'value' || field === 'identifierType') {
+		const newErrors = {...errors.value};
+		delete newErrors[index];
+		errors.value = newErrors;
+	}
 }
 </script>

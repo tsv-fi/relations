@@ -46,3 +46,24 @@ msgstr "Save"
  
 msgid "plugins.generic.relations.button.saving"
 msgstr "Saving..."
+
+msgid "plugins.generic.relations.validation.invalidValue"
+msgstr "{$type} identifier \"{$value}\" is not valid."
+
+msgid "plugins.generic.relations.relationType.hasPreprint"
+msgstr "Preprint version"
+
+msgid "plugins.generic.relations.relationType.isTranslationOf"
+msgstr "Translation of"
+
+msgid "plugins.generic.relations.relationType.hasTranslation"
+msgstr "Available as translation"
+
+msgid "plugins.generic.relations.relationType.isReviewOf"
+msgstr "Review of"
+
+msgid "plugins.generic.relations.relationType.isCommentOn"
+msgstr "Commentary on"
+
+msgid "plugins.generic.relations.relationType.hasComment"
+msgstr "Has commentary"

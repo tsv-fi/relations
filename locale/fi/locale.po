@@ -46,3 +46,24 @@ msgstr "Tallenna"
  
 msgid "plugins.generic.relations.button.saving"
 msgstr "Tallennetaan..."
+
+msgid "plugins.generic.relations.validation.invalidValue"
+msgstr "{$type}-tunniste \"{$value}\" ei ole kelvollinen."
+
+msgid "plugins.generic.relations.relationType.hasPreprint"
+msgstr "Ennakkojulkaisu"
+
+msgid "plugins.generic.relations.relationType.isTranslationOf"
+msgstr "Käännetty teoksesta"
+
+msgid "plugins.generic.relations.relationType.hasTranslation"
+msgstr "Saatavilla käännöksenä"
+
+msgid "plugins.generic.relations.relationType.isReviewOf"
+msgstr "Arvio teoksesta"
+
+msgid "plugins.generic.relations.relationType.isCommentOn"
+msgstr "Kommentaari teoksesta"
+
+msgid "plugins.generic.relations.relationType.hasComment"
+msgstr "Kommentoitu"
